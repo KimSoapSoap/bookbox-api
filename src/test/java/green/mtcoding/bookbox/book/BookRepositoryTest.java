@@ -25,6 +25,9 @@ public class BookRepositoryTest {
 
     @Test
     public void mFindAllWithCategory_test(){
+        bookRepository.mFindAllWithCategory();
+    @Test
+    public void mFindAllWithCategory_test(){
         List<Book> books = bookRepository.mFindAllWithCategory();
         System.out.println(books.get(0).getCategory());
     }
