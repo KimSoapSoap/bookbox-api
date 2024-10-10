@@ -7,6 +7,8 @@ import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,15 @@ public class BookService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public BookResponse.BookSearchDTO 검색기록보기(String title, String author, String publisher){
+
+        if(title == null || author == null || publisher == null){
+            List<Book> bookPG = bookRepository.findAll();
+            return new BookResponse.BookSearchDTO(bookPG, "");
+        }
+        List<Book> searchBookList = bookRepository.mFindAll(title, author, publisher);
     }
 
     public List<BookResponse.CategoryDTO> 책과카테고리보기(){
