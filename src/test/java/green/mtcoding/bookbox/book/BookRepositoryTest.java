@@ -15,7 +15,10 @@ public class BookRepositoryTest {
         String title = "제";
         String author = "";
         String publisher = "";
+    }
 
-
+    @Test
+    public void mFindAllWithCategory_test(){
+        bookRepository.mFindAllWithCategory();
     }
 }

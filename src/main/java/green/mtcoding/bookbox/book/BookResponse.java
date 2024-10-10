@@ -20,4 +20,12 @@ public class BookResponse {
             this.cover = book.getCover();
         }
     }
+
+    @Data
+    public static class BookListDTO {
+        private String isbn13;
+        private String title;
+        private String author;
+        private String cover;
+    }
 }
