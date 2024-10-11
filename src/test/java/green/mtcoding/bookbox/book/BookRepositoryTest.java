@@ -25,9 +25,6 @@ public class BookRepositoryTest {
 
     @Test
     public void mFindAllWithCategory_test(){
-        bookRepository.mFindAllWithCategory();
-    @Test
-    public void mFindAllWithCategory_test(){
         List<Book> books = bookRepository.mFindAllWithCategory();
         System.out.println(books.get(0).getCategory());
     }
@@ -42,7 +39,10 @@ public class BookRepositoryTest {
         String id = "170";
         //Optional<Book> book = bookRepository.mFindByCategoryId(id);
         //System.out.println(book.isPresent());
+        List<Book> books = bookRepository.mFindAllWithCategory();
+        System.out.println(books.get(0).getCategory());
     }
+
 
 
     // 대여 상태인지 확인
@@ -51,10 +51,10 @@ public void mCheckLendStatus_test(){
 
         //given
         String isbn13 = "9791187011590";
-        
+
         //when
         Boolean b = bookRepository.mCheckLendStatus(isbn13).orElseThrow(() -> new ExceptionApi404("요청하신 도서가 존재하지 않습니다."));
-    
+
         //eye
         System.out.println(b);
         if(b.booleanValue()){

@@ -7,10 +7,9 @@ import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -45,25 +44,6 @@ public class BookService {
 //        List<Book> searchBookList = bookRepository.mFindAll(title, author, publisher);
 //    }
 
-    public List<BookResponse.CategoryDTO> 책과카테고리보기(){
-        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
-        List<BookResponse.CategoryDTO> dtos = new ArrayList<>();
-        for(Category category : categories) {
-            BookResponse.CategoryDTO dto = new BookResponse.CategoryDTO(category);
-            dtos.add(dto);
-        }
-        return dtos;
-    }
-
-    public List<BookResponse.clickCategoryDTO> 카테고리별책보기(String id){
-        List<Book> bookList = bookRepository.mFindByCategoryId(id);
-        List<BookResponse.clickCategoryDTO> dtos = new ArrayList<>();
-        for(Book book : bookList) {
-            BookResponse.clickCategoryDTO dto = new BookResponse.clickCategoryDTO(book);
-            dtos.add(dto);
-        }
-        return dtos;
-    }
 
     // TODO: AdminController 도서 CRUD 처리를 위한 로직 - 신민재
     // 도서 등록
@@ -102,5 +82,24 @@ public class BookService {
         Book book = bookRepository.findById(isbn13)
                 .orElseThrow(() -> new ExceptionApi400("도서를 찾을 수 없습니다."));
         return new BookResponse.BookDetailDTO(book);
+    }
+    public List<BookResponse.CategoryDTO> 책과카테고리보기(){
+        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
+        List<BookResponse.CategoryDTO> dtos = new ArrayList<>();
+        for(Category category : categories) {
+            BookResponse.CategoryDTO dto = new BookResponse.CategoryDTO(category);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public List<BookResponse.clickCategoryDTO> 카테고리별책보기(String id){
+        List<Book> bookList = bookRepository.mFindByCategoryId(id);
+        List<BookResponse.clickCategoryDTO> dtos = new ArrayList<>();
+        for(Book book : bookList) {
+            BookResponse.clickCategoryDTO dto = new BookResponse.clickCategoryDTO(book);
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }
