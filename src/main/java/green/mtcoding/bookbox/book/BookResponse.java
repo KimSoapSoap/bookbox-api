@@ -15,13 +15,15 @@ public class BookResponse {
         private String author;
         private String publisher;
         private String cover;
+        private String keyword;
 
-        public BookSearchDTO(Book book) {
+        public BookSearchDTO(Book book, String bookTitle) {
             this.isbn13 = book.getIsbn13();
             this.title = book.getTitle();
             this.author = book.getAuthor();
             this.publisher = book.getPublisher();
             this.cover = book.getCover();
+            this.keyword = bookTitle;
         }
     }
 
@@ -32,12 +34,13 @@ public class BookResponse {
         private String author;
         private String cover;
 
-
-        public BookListDTO(Book book) {
+        public BookListDTO(Book book ) {
             this.isbn13 = book.getIsbn13();
             this.title = book.getTitle();
             this.author = book.getAuthor();
             this.cover = book.getCover();
+
+
         }
     }
 
@@ -46,14 +49,20 @@ public class BookResponse {
         private String id;
         private String name;
 
-        List<BookListDTO> bookList = new ArrayList<>();
-
         public CategoryDTO(Category category) {
             this.id = category.getId();
             this.name = category.getName();
-            for(Book book : category.getBooks()) {
-                bookList.add(new BookListDTO(book));
-            }
+        }
+    }
+
+    @Data
+    public static class MainDTO {
+        List<CategoryDTO> categoryList = new ArrayList<>();
+        List<BookListDTO> bookList = new ArrayList<>();
+
+        public MainDTO(List<CategoryDTO> categoryList, List<BookListDTO> bookList) {
+            this.categoryList = categoryList;
+            this.bookList = bookList;
         }
     }
 

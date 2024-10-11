@@ -2,12 +2,11 @@ package green.mtcoding.bookbox.book;
 
 
 import green.mtcoding.bookbox.core.util.Resp;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,5 +33,11 @@ public class BookController {
     public ResponseEntity<?> detail(@PathVariable("id") String id) {
         List<BookResponse.clickCategoryDTO> bookListDTO = bookService.카테고리별책보기(id);
         return ResponseEntity.ok(Resp.ok(bookListDTO));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam(name = "keyword") String keyword) {
+        List<BookResponse.BookSearchDTO> searchDTOS = bookService.검색기록보기(keyword);
+        return ResponseEntity.ok(Resp.ok(searchDTOS));
     }
 }

@@ -17,14 +17,26 @@ public class BookService {
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
 
-    //    public BookResponse.BookSearchDTO 검색기록보기(String title, String author, String publisher){
-//
-//        if(title == null || author == null || publisher == null){
-//            List<Book> bookPG = bookRepository.findAll();
-//            return new BookResponse.BookSearchDTO(bookPG, "");
-//        }
-//        List<Book> searchBookList = bookRepository.mFindAll(title, author, publisher);
-//    }
+    public List<BookResponse.BookSearchDTO> 검색기록보기(String keyword){
+        System.out.println("검색어:" + keyword);
+        if(keyword == null){
+            List<Book> bookPG = bookRepository.findAll();
+            List<BookResponse.BookSearchDTO> dtos = new ArrayList<>();
+            for(Book book : bookPG){
+                BookResponse.BookSearchDTO dto = new BookResponse.BookSearchDTO(book, "");
+                dtos.add(dto);
+            }
+            return dtos;
+        }
+        List<Book> searchBookList = bookRepository.mFindAll(keyword);
+        List<BookResponse.BookSearchDTO> dtos = new ArrayList<>();
+        for(Book book : searchBookList){
+            BookResponse.BookSearchDTO dto = new BookResponse.BookSearchDTO(book, keyword);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
     public List<BookResponse.BookListDTO> 메인책목록보기(){
         List<Book> books = bookRepository.mFindAllWithCategory();
         List<BookResponse.BookListDTO> dtos = new ArrayList<>();
