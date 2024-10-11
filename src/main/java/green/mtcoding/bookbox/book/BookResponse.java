@@ -1,7 +1,5 @@
 package green.mtcoding.bookbox.book;
 
-import lombok.Data;
-
 import green.mtcoding.bookbox.category.Category;
 import lombok.Data;
 
@@ -26,31 +24,6 @@ public class BookResponse {
             this.publisher = book.getPublisher();
             this.cover = book.getCover();
             this.keyword = bookTitle;
-        }
-    }
-
-    @Data
-    public static class BookListDTO {
-        private String isbn13;
-        private String title;
-        private String author;
-        private String cover;
-    }
-
-    @Data
-    public static class BookSearchDTO {
-        private String isbn13;
-        private String title;
-        private String author;
-        private String publisher;
-        private String cover;
-
-        public BookSearchDTO(Book book) {
-            this.isbn13 = book.getIsbn13();
-            this.title = book.getTitle();
-            this.author = book.getAuthor();
-            this.publisher = book.getPublisher();
-            this.cover = book.getCover();
         }
     }
 
