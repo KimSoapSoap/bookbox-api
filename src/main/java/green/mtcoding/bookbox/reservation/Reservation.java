@@ -5,12 +5,14 @@ import green.mtcoding.bookbox.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "reservation_tb")
 public class Reservation {
 
@@ -26,5 +28,7 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Book book;
+
+    private int sequence; // 예약 순번 추가
 
 }
