@@ -10,6 +10,7 @@ import green.mtcoding.bookbox.user.User;
 import green.mtcoding.bookbox.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final BookRepository bookRepository;
@@ -39,6 +41,9 @@ public class ReservationService {
         reservation.setUser(user);
         reservation.setBook(book);
         reservation.setReservationDate(Timestamp.valueOf(LocalDateTime.now()));
+
+        // 현재 예약 인원 수에 따라 sequence 설정 (1부터 카운트)
+        reservation.setSequence(currentReservationCount + 1);
 
         return reservationRepository.save(reservation);
     }

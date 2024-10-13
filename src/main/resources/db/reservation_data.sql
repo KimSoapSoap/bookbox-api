@@ -1,2 +1,2 @@
-INSERT INTO reservation_tb (user_id, isbn13, reservation_date) VALUES (2, '9791187011590', now());
-INSERT INTO reservation_tb (user_id, isbn13, reservation_date) VALUES (3, '9791187011590', now());
+INSERT INTO reservation_tb (user_id, book_id, reservation_date, sequence) VALUES (2, '9791187011590', now(), 1);
+INSERT INTO reservation_tb (user_id, book_id, reservation_date, sequence) VALUES (1, '9791187011590', now(), 2);

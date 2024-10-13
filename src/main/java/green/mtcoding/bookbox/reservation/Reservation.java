@@ -27,8 +27,10 @@ public class Reservation {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "isbn13")
     private Book book;
 
+    @Column(nullable = false)
     private int sequence; // 예약 순번 추가
 
 }
