@@ -27,44 +27,41 @@ public class BookResponse {
         }
     }
 
-    @Data
-    public static class BookListDTO {
-        private String isbn13;
-        private String title;
-        private String author;
-        private String cover;
-
-        public BookListDTO(Book book ) {
-            this.isbn13 = book.getIsbn13();
-            this.title = book.getTitle();
-            this.author = book.getAuthor();
-            this.cover = book.getCover();
-
-
-        }
-    }
 
     @Data
     public static class CategoryDTO {
         private String id;
         private String name;
 
+        List<BookListDTO> books = new ArrayList<>();
+
+        @Data
+        class BookListDTO {
+            private String isbn13;
+            private String title;
+            private String author;
+            private String cover;
+
+            public BookListDTO(Book book) {
+                this.isbn13 = book.getIsbn13();
+                this.title = book.getTitle();
+                this.author = book.getAuthor();
+                this.cover = book.getCover();
+
+
+            }
+        }
+
         public CategoryDTO(Category category) {
             this.id = category.getId();
             this.name = category.getName();
+
+            for (Book book : category.getBooks()) {
+                books.add(new BookListDTO(book));
+            }
         }
     }
 
-    @Data
-    public static class MainDTO {
-        List<CategoryDTO> categoryList = new ArrayList<>();
-        List<BookListDTO> bookList = new ArrayList<>();
-
-        public MainDTO(List<CategoryDTO> categoryList, List<BookListDTO> bookList) {
-            this.categoryList = categoryList;
-            this.bookList = bookList;
-        }
-    }
 
     //카테고리 id로 찾을 항목
     @Data
@@ -96,7 +93,7 @@ public class BookResponse {
         private String pubDate;
         private String categoryId;
 
-        public SaveDTO(Book book ) {
+        public SaveDTO(Book book) {
             this.isbn13 = book.getIsbn13();
             this.title = book.getTitle();
             this.author = book.getAuthor();
@@ -140,7 +137,7 @@ public class BookResponse {
         private String pubDate;
         private boolean lendStatus;
 
-        public BookDetailDTO(Book book ) {
+        public BookDetailDTO(Book book) {
             this.isbn13 = book.getIsbn13();
             this.title = book.getTitle();
             this.author = book.getAuthor();

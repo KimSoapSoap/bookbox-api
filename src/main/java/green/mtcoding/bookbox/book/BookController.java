@@ -17,14 +17,21 @@ public class BookController {
 
     private final BookService bookService;
 
+//        @GetMapping("/")
+//    public ResponseEntity<?> list(){
+//        List<BookResponse.BookListDTO> bookDTO = bookService.메인책목록보기();
+//        return ResponseEntity.ok(Resp.ok(bookDTO));
+//    }
     @GetMapping("/")
-    public ResponseEntity<?> list(){
-        List<BookResponse.BookListDTO> bookDTO = bookService.메인책목록보기();
-        return ResponseEntity.ok(Resp.ok(bookDTO));
+    public ResponseEntity<?> list() {
+        System.out.println("8");
+        List<BookResponse.CategoryDTO> categoryDTOS = bookService.메인목록보기V2();
+        System.out.println("9");
+        return ResponseEntity.ok(Resp.ok(categoryDTOS));
     }
 
     @GetMapping("/2")
-    public ResponseEntity<?> listV2(){
+    public ResponseEntity<?> listV2() {
         List<BookResponse.CategoryDTO> categoryDTO = bookService.책과카테고리보기();
         return ResponseEntity.ok(Resp.ok(categoryDTO));
     }

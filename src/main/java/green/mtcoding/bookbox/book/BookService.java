@@ -19,6 +19,7 @@ public class BookService {
 
     public List<BookResponse.BookSearchDTO> 검색기록보기(String keyword){
         System.out.println("검색어:" + keyword);
+        //아무것도 적지 않았을 때
         if(keyword == null){
             List<Book> bookPG = bookRepository.findAll();
             List<BookResponse.BookSearchDTO> dtos = new ArrayList<>();
@@ -29,6 +30,11 @@ public class BookService {
             return dtos;
         }
         List<Book> searchBookList = bookRepository.mFindAll(keyword);
+        //만약 검색결과가 없을 때
+//        if(searchBookList.isEmpty()){
+//         return
+//        }
+        //검색 결과가 있을 때
         List<BookResponse.BookSearchDTO> dtos = new ArrayList<>();
         for(Book book : searchBookList){
             BookResponse.BookSearchDTO dto = new BookResponse.BookSearchDTO(book, keyword);
@@ -37,24 +43,32 @@ public class BookService {
         return dtos;
     }
 
-    public List<BookResponse.BookListDTO> 메인책목록보기(){
-        List<Book> books = bookRepository.mFindAllWithCategory();
-        List<BookResponse.BookListDTO> dtos = new ArrayList<>();
-        for(Book book : books) {
-            BookResponse.BookListDTO dto = new BookResponse.BookListDTO(book);
+//    public List<BookResponse.BookListDTO> 메인책목록보기(){
+//        List<Book> books = bookRepository.mFindAllWithCategory();
+//        List<BookResponse.BookListDTO> dtos = new ArrayList<>();
+//        for(Book book : books) {
+//            BookResponse.BookListDTO dto = new BookResponse.BookListDTO(book);
+//            dtos.add(dto);
+//        }
+//        return dtos;
+//    }
+
+    public List<BookResponse.CategoryDTO> 메인목록보기V2(){
+        System.out.println("1");
+        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
+        System.out.println("2");
+        List<BookResponse.CategoryDTO> dtos = new ArrayList<>();
+        System.out.println("3");
+        for(Category category : categories){
+            System.out.println("4");
+            BookResponse.CategoryDTO dto = new BookResponse.CategoryDTO(category);
+            System.out.println("5");
             dtos.add(dto);
+            System.out.println("6");
         }
+        System.out.println("7");
         return dtos;
     }
-
-//    public BookResponse.BookSearchDTO 검색기록보기(String title, String author, String publisher){
-//
-//        if(title == null || author == null || publisher == null){
-//            List<Book> bookPG = bookRepository.findAll();
-//            return new BookResponse.BookSearchDTO(bookPG, "");
-//        }
-//        List<Book> searchBookList = bookRepository.mFindAll(title, author, publisher);
-//    }
 
 
     // TODO: AdminController 도서 CRUD 처리를 위한 로직 - 신민재
