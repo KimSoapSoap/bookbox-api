@@ -26,6 +26,11 @@ public class User {
     @NotBlank
     @Column(unique = true)
     private String username;
+
+    //TODO : 유저 닉네임 추가(주헌)
+    @Column(nullable = false)
+    private String nick;
+
     @NotBlank
     private String password;
     @Column(nullable = false)
@@ -48,15 +53,17 @@ public class User {
     private List<Reservation> reservations = new ArrayList<>();
 
     @Builder
-    public User(Long id, String username, String password, String phone, String email, Timestamp createdAt, Timestamp modifiedAt, String profile) {
+
+    public User(Long id, String username, String nick, String password, String phone, String email, Timestamp createdAt, Timestamp modifiedAt, String profile) {
         this.id = id;
         this.username = username;
+        this.nick = nick;
         this.password = password;
         this.phone = phone;
         this.email = email;
-        this.profile = profile;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.profile = profile;
     }
     
     // 생성자 오버로딩
