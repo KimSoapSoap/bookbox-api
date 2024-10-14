@@ -32,7 +32,7 @@ public class BookController {
     }
 
     @GetMapping("/api/main/sort")
-    public ResponseEntity<?> detail(@RequestParam(name = "id") String id) {
+    public ResponseEntity<?> bookByCategory(@RequestParam(name = "id") String id) {
         List<BookResponse.clickCategoryDTO> bookListDTO = bookService.카테고리별책보기(id);
         return ResponseEntity.ok(Resp.ok(bookListDTO));
     }
@@ -43,4 +43,10 @@ public class BookController {
         return ResponseEntity.ok(Resp.ok(searchDTOS));
     }
 
+    //책 상세보기
+    @GetMapping("/api/books/detail")
+    public ResponseEntity<?> detail(@RequestParam(name = "isbn13") String isbn13){
+        BookResponse.BookDetailDTO bookDetail = bookService.책상세보기(isbn13);
+        return ResponseEntity.ok(Resp.ok(bookDetail));
+    }
 }
