@@ -19,7 +19,13 @@ VALUES
 
 
 
-
+--TODO : 댓글 추가
+insert into comment_tb(content, created_at, isbn13, user_id) values('너무 감명깊에 읽었지만 평가에 귀여운 여우에 대한 감정이 들어간게 아닌가 싶어 보류 드리겠습니다.',now(),'9791190669313', 1);
+insert into comment_tb(content, created_at, isbn13, user_id) values('나야 홍길동',now(),'9788996851516', 2);
+insert into comment_tb(content, created_at, isbn13, user_id) values('물.. 물코키 씨푸드',now(),'9788937462788', 3);
+insert into comment_tb(content, created_at, isbn13, user_id) values('백종원',now(),'9791136791047', 1);
+insert into comment_tb(content, created_at, isbn13, user_id) values('독재자/사회주의정치를 쪼린 그리고 동물을 곁들인',now(),'9788937460050', 2);
+insert into comment_tb(content, created_at, isbn13, user_id) values('공부 ptsd 오지만 읽고나면 또 도움 됩니다.',now(),'9789813350212', 3);
 
 
 
