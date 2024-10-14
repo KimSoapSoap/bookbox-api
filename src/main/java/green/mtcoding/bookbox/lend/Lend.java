@@ -50,6 +50,17 @@ public class Lend {
         this.returnDate = returnDate;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setLendDate(Timestamp lendDate) {
+        this.lendDate = lendDate;
+    }
     @Builder
     public Lend(Long id, Timestamp lendDate, Timestamp returnDate, boolean returnStatus, boolean extendStatus, User user, Book book) {
         this.id = id;
@@ -61,11 +72,4 @@ public class Lend {
         this.book = book;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 }
