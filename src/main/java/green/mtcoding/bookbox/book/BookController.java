@@ -22,27 +22,19 @@ public class BookController {
 //        List<BookResponse.BookListDTO> bookDTO = bookService.메인책목록보기();
 //        return ResponseEntity.ok(Resp.ok(bookDTO));
 //    }
-    @GetMapping("/")
-    public ResponseEntity<?> list() {
-        System.out.println("8");
-        List<BookResponse.CategoryDTO> categoryDTOS = bookService.메인목록보기V2();
-        System.out.println("9");
+    @GetMapping("/api/main/book-list")
+    public ResponseEntity<?> mainList() {
+        List<BookResponse.CategoryDTO> categoryDTOS = bookService.메인목록보기();
         return ResponseEntity.ok(Resp.ok(categoryDTOS));
     }
 
-    @GetMapping("/2")
-    public ResponseEntity<?> listV2() {
-        List<BookResponse.CategoryDTO> categoryDTO = bookService.책과카테고리보기();
-        return ResponseEntity.ok(Resp.ok(categoryDTO));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> detail(@PathVariable("id") String id) {
+    @GetMapping("/api/main/sort")
+    public ResponseEntity<?> detail(@RequestParam(name = "id") String id) {
         List<BookResponse.clickCategoryDTO> bookListDTO = bookService.카테고리별책보기(id);
         return ResponseEntity.ok(Resp.ok(bookListDTO));
     }
 
-    @GetMapping("/search")
+    @GetMapping("/api/searches")
     public ResponseEntity<?> search(@RequestParam(name = "keyword") String keyword) {
         List<BookResponse.BookSearchDTO> searchDTOS = bookService.검색기록보기(keyword);
         return ResponseEntity.ok(Resp.ok(searchDTOS));

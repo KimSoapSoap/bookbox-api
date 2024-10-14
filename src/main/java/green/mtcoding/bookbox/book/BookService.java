@@ -31,9 +31,9 @@ public class BookService {
         }
         List<Book> searchBookList = bookRepository.mFindAll(keyword);
         //만약 검색결과가 없을 때
-//        if(searchBookList.isEmpty()){
-//         return
-//        }
+        if(searchBookList.isEmpty()){
+         throw new ExceptionApi404("검색 결과가 없습니다.");
+        }
         //검색 결과가 있을 때
         List<BookResponse.BookSearchDTO> dtos = new ArrayList<>();
         for(Book book : searchBookList){
@@ -53,20 +53,13 @@ public class BookService {
 //        return dtos;
 //    }
 
-    public List<BookResponse.CategoryDTO> 메인목록보기V2(){
-        System.out.println("1");
-        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
-        System.out.println("2");
+    public List<BookResponse.CategoryDTO> 메인목록보기(){
+        List<Category> categories = bookRepository.mFindAllWithCategory();
         List<BookResponse.CategoryDTO> dtos = new ArrayList<>();
-        System.out.println("3");
         for(Category category : categories){
-            System.out.println("4");
             BookResponse.CategoryDTO dto = new BookResponse.CategoryDTO(category);
-            System.out.println("5");
             dtos.add(dto);
-            System.out.println("6");
         }
-        System.out.println("7");
         return dtos;
     }
 
@@ -109,15 +102,7 @@ public class BookService {
                 .orElseThrow(() -> new ExceptionApi400("도서를 찾을 수 없습니다."));
         return new BookResponse.BookDetailDTO(book);
     }
-    public List<BookResponse.CategoryDTO> 책과카테고리보기(){
-        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
-        List<BookResponse.CategoryDTO> dtos = new ArrayList<>();
-        for(Category category : categories) {
-            BookResponse.CategoryDTO dto = new BookResponse.CategoryDTO(category);
-            dtos.add(dto);
-        }
-        return dtos;
-    }
+
 
     public List<BookResponse.clickCategoryDTO> 카테고리별책보기(String id){
         List<Book> bookList = bookRepository.mFindByCategoryId(id);

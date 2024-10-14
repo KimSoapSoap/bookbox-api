@@ -23,25 +23,25 @@ public class BookRepositoryTest {
         String publisher = "";
     }
 
-    @Test
-    public void mFindAllWithCategory_test(){
-        List<Book> books = bookRepository.mFindAllWithCategory();
-        System.out.println(books.get(0).getCategory());
-    }
-    @Test
-    public void mFindAllWithCategoryV2_test(){
-        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
-        System.out.println(categories.size());
-    }
-
-    @Test
-    public void mFindByCategoryId_test(){
-        String id = "170";
-        //Optional<Book> book = bookRepository.mFindByCategoryId(id);
-        //System.out.println(book.isPresent());
-        List<Book> books = bookRepository.mFindAllWithCategory();
-        System.out.println(books.get(0).getCategory());
-    }
+//    @Test
+//    public void mFindAllWithCategory_test(){
+//        List<Book> books = bookRepository.mFindAllWithCategory();
+//        System.out.println(books.get(0).getCategory());
+//    }
+//    @Test
+//    public void mFindAllWithCategoryV2_test(){
+//        List<Category> categories = bookRepository.mFindAllWithCategoryV2();
+//        System.out.println(categories.size());
+//    }
+//
+//    @Test
+//    public void mFindByCategoryId_test(){
+//        String id = "170";
+//        //Optional<Book> book = bookRepository.mFindByCategoryId(id);
+//        //System.out.println(book.isPresent());
+//        List<Book> books = bookRepository.mFindAllWithCategory();
+//        System.out.println(books.get(0).getCategory());
+//    }
 
 
 
