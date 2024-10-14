@@ -38,7 +38,15 @@ public class LendController {
         return ResponseEntity.ok(Resp.ok(result, "성공적으로 반납되었습니다."));
     }
 
+    //TODO: 테스트용 컨트롤러 (지우기)
+    // 자동반납 테스트
+/*    @PutMapping("/lends/auto-return")
+    public ResponseEntity<?> lendAutoReturn(){
 
+        LendResponse.AutoReturnDTO result = lendService.자동반납();
+
+        return ResponseEntity.ok(Resp.ok(result));
+    }*/
 
     // 현재 대여중인 도서 목록
     @GetMapping("/api/lends/list")
