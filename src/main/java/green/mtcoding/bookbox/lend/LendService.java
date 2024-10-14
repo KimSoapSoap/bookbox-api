@@ -96,14 +96,15 @@ public class LendService {
         }
 
 
-
         // 4. 반납정보 return
-        Lend lendPS = lendRepository.mFindLend(userId, request.getIsbn13());
+        Lend lendPS = lendRepository.findLatestReturnedLendNative(userId, request.getIsbn13())
+                .orElseThrow(() -> new ExceptionApi404("반납된 기록을 찾을 수 없습니다."));
 
         return new LendResponse.ReturnDTO(lendPS);
 
     }
 
+    // TODO: 자동 반납 예약 부분 잘 안됨 실행시키지마셈 ㅠ
     // 자동으로 반납시키기 ( 반납일 12시에 자동으로 반납됨 )
     // 스케줄링 설정
     @Transactional
@@ -135,8 +136,7 @@ public class LendService {
             // 다음 예약자 대여 실행
             if (!reservedBook.isEmpty()) {
                 // 예약자 중 reservation_id가 가장 작은 userId 조회
-                // 이렇게 하면 안되는게
-
+                // TODO: 예약자 중 sequence가 가장 작은 UserId 조회하는 걸로 수정하기
                 Long userId = reservationRepository.findFirstUserIdByIsbn13(book.getIsbn13());
 
                 // 새로운 대여 처리
@@ -155,10 +155,7 @@ public class LendService {
     }
 
 
-    // where 도서 식별키로 찾아서 userId 가져오기
-    //reservationRepository.findUserB
 
-    // 다음 예약자 reservation 에서 제거
 
 
     public LendResponse.ListDTO 대여중인도서목록조회(Long userId) {

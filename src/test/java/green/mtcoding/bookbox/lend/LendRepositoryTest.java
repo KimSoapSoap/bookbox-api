@@ -2,6 +2,7 @@ package green.mtcoding.bookbox.lend;
 
 import green.mtcoding.bookbox.book.Book;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
+import green.mtcoding.bookbox.user.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 public class LendRepositoryTest {
@@ -75,7 +76,7 @@ public class LendRepositoryTest {
     public void mFindLend_test() {
         //given
         Long userId = 1L;
-        String bookId = "9788937461798";
+        String bookId = "9791187011590";
         //when
         Lend lend = lendRepository.mFindLend(userId, bookId);
         //eye
@@ -89,7 +90,7 @@ public class LendRepositoryTest {
     public void mReturnLend_test() {
         //given
         Long userId = 1L;
-        String bookId = "9788937461798";
+        String bookId = "9791187011590";
 
         //when
         lendRepository.mReturnLend(userId, bookId);
@@ -184,5 +185,21 @@ public class LendRepositoryTest {
             System.out.println(lend.isReturnStatus());
             assertTrue(lend.isReturnStatus()); // 각 lend의 반납 상태가 true인지 확인
         }
+    }
+
+    @Test
+    public void mFindLatestReturnedLend_test() {
+        // given
+        Long userId = 1L;
+        String bookId = "9791187011590";
+
+        // when: 가장 최근 반납된 대여 기록 조회
+        Optional<Lend> latestLend = lendRepository.findLatestReturnedLendNative(userId, bookId);
+
+        // then: 반환된 대여 기록이 가장 최근의 데이터인지 검증
+        assertTrue(latestLend.isPresent());
+        assertEquals(Timestamp.valueOf("2024-10-14 22:10:17.921182"), latestLend.get().getReturnDate());
+        assertEquals(userId, latestLend.get().getUser().getId());
+        assertEquals(bookId, latestLend.get().getBook().getIsbn13());
     }
 }
