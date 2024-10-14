@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "lend_tb")
 public class Lend {
 

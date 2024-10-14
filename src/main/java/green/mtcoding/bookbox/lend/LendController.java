@@ -27,7 +27,7 @@ public class LendController {
     }
 
     // 반납하기
-    // TODO: 다음 예약자에게 자동으로 넘어가도록 처리
+    // TODO: 다음 예약자에게 자동으로 넘어가도록 처리 - 민재씨가 추가완료함
     @PutMapping("/api/lends/return")
     public ResponseEntity<?>  lendReturn(@RequestHeader("Authorization") String token, @RequestBody LendRequest.ReturnDTO request){
         String jwtToken = token.replace("Bearer ", "");
