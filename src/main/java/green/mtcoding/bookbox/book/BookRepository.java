@@ -24,6 +24,9 @@ public interface BookRepository extends JpaRepository<Book, String> {
     @Query("select b from Book b where b.category.id =:id")
     List<Book> mFindByCategoryId(@Param("id") String id);
 
+    //상세보기
+    //@Query("")
+
 
     // 대여 상태인지 확인
     @Query("select b.lendStatus from Book b where b.isbn13 = :isbn13")

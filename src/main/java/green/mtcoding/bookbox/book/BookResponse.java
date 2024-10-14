@@ -31,7 +31,7 @@ public class BookResponse {
 
     //책만 보이는 DTO
     @Data
-    public static class BookListDTO{
+    public static class BookListDTO {
         private String isbn13;
         private String title;
         private String author;
@@ -129,6 +129,23 @@ public class BookResponse {
         List<CommentDTO> comments = new ArrayList<>();
         //찜하기(좋아요) 아직 구현안됨
 
+        public DetailDTO(Book book) {
+            this.isbn13 = book.getIsbn13();
+            this.title = book.getTitle();
+            this.author = book.getAuthor();
+            this.cover = book.getCover();
+            this.publisher = book.getPublisher();
+            this.description = book.getDescription();
+            this.adult = book.isAdult();
+            this.pubDate = book.getPubDate();
+            this.lendStatus = book.isLendStatus();
+            this.reservationStatus = book.isReservationStatus();
+            this.reservationCount = book.getReservationCount();
+
+            for(Comment comment : book.getComments()) {
+                comments.add(new CommentDTO(comment));
+            }
+        }
 
         @Data
         class CommentDTO {
