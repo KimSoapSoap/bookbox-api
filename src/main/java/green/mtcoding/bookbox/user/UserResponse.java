@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.swing.text.View;
 import java.sql.Timestamp;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,6 @@ public class UserResponse {
     }
 
 
-
     // 로그인
     @Data
     public static class LoginDTO {
@@ -58,8 +58,8 @@ public class UserResponse {
             this.accessToken = accessToken;
         }
     }
-
-
+    
+    // 회원정보 수정 - 없어진 기능
     @Data
     public static class UpdateInfoDTO {
         private Long id;
@@ -84,13 +84,63 @@ public class UserResponse {
             this.createdAt = userPS.getCreatedAt();
         }
     }
-
+    
+    // 유저네임 중복체크
     @Data
     public static class UsernameDupCheckDTO {
         private String username;
 
         public UsernameDupCheckDTO(String username) {
             this.username = username;
+        }
+    }
+
+    
+    // 닉네임 중복체크
+    @Data
+    public static class NickDupCheckDTO {
+        private String nick;
+
+        public NickDupCheckDTO(String nick) {
+            this.nick = nick;
+        }
+    }
+
+    // 닉네임 수정
+    @Data
+    public static class UpdateNickDTO {
+        private String nick;
+        private Long userId;
+
+        public UpdateNickDTO(User userPS) {
+            this.userId = userPS.getId();
+            this.nick = userPS.getNick();
+
+        }
+    }
+
+    public static class LendDTO {
+        private String bookTitle;
+        private Timestamp lendDate;
+
+        public LendDTO(String bookTitle, Timestamp lendDate) {
+            this.bookTitle = bookTitle;
+            this.lendDate = lendDate;
+
+        }
+    }
+
+
+    public static class ReservationDTO {
+        private String bookTitle;
+        private Timestamp reservationDate;
+
+        public ReservationDTO(String bookTitle, Timestamp reservationDate) {
+            this.bookTitle = bookTitle;
+            this.reservationDate = reservationDate;
+
+        }
+    }
 
     // TODO: 유저의 기본 정보와 필요 데이터 응답을 위해 생성 - 신민재
 
@@ -137,46 +187,9 @@ public class UserResponse {
                     .map(reservation -> new ReservationDTO(reservation.getBook().getTitle(), reservation.getReservationDate()))
                     .collect(Collectors.toList());
 
-        }
-    }
-
-    @Data
-    public static class NickDupCheckDTO {
-        private String nick;
-
-        public NickDupCheckDTO(String nick) {
-            this.nick = nick;
-
-    public static class LendDTO {
-        private String bookTitle;
-        private Timestamp lendDate;
-
-        public LendDTO(String bookTitle, Timestamp lendDate) {
-            this.bookTitle = bookTitle;
-            this.lendDate = lendDate;
-        }
-    }
-
-    @Data
-    public static class UpdateNickDTO {
-        private String nick;
-        private Long userId;
-
-        public UpdateNickDTO(User userPS) {
-            this.userId = userPS.getId();
-            this.nick = userPS.getNick();
-
-    public static class ReservationDTO {
-        private String bookTitle;
-        private Timestamp reservationDate;
-
-        public ReservationDTO(String bookTitle, Timestamp reservationDate) {
-            this.bookTitle = bookTitle;
-            this.reservationDate = reservationDate;
 
         }
     }
-
 
     // 조회
     @Data
