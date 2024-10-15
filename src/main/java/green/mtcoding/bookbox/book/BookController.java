@@ -44,9 +44,9 @@ public class BookController {
     }
 
     //책 상세보기
-    @GetMapping("/api/books/detail")
-    public ResponseEntity<?> detail(@RequestParam(name = "isbn13") String isbn13){
-        BookResponse.BookDetailDTO bookDetail = bookService.책상세보기(isbn13);
-        return ResponseEntity.ok(Resp.ok(bookDetail));
-    }
+//    @GetMapping("/api/books/detail")
+//    public ResponseEntity<?> detail(@RequestParam(name = "isbn13") String isbn13){
+//        BookResponse.BookDetailDTO bookDetail = bookService.책상세보기(isbn13);
+//        return ResponseEntity.ok(Resp.ok(bookDetail));
+//    }
 }

@@ -19,15 +19,6 @@ VALUES
 
 
 
---TODO : 댓글 추가
-insert into comment_tb(content, created_at, isbn13, user_id) values('너무 감명깊에 읽었지만 평가에 귀여운 여우에 대한 감정이 들어간게 아닌가 싶어 보류 드리겠습니다.',now(),'9791190669313', 1);
-insert into comment_tb(content, created_at, isbn13, user_id) values('나야 홍길동',now(),'9788996851516', 2);
-insert into comment_tb(content, created_at, isbn13, user_id) values('물.. 물코키 씨푸드',now(),'9788937462788', 3);
-insert into comment_tb(content, created_at, isbn13, user_id) values('백종원',now(),'9791136791047', 1);
-insert into comment_tb(content, created_at, isbn13, user_id) values('독재자/사회주의정치를 쪼린 그리고 동물을 곁들인',now(),'9788937460050', 2);
-insert into comment_tb(content, created_at, isbn13, user_id) values('공부 ptsd 오지만 읽고나면 또 도움 됩니다.',now(),'9789813350212', 3);
-
-
 
 
 
@@ -992,3 +983,5 @@ INSERT INTO book_tb (isbn13, title, author, publisher, description, category_id,
 INSERT INTO book_tb (isbn13, title, author, publisher, description, category_id, item_id, cover, pub_date, adult, link, lend_status, reservation_status, lend_count, reservation_count)VALUES ('9771228111007', '바자 Bazaar Korea 2024.10 (표지 3종 중 랜덤) - 주요기사 : 세븐틴 정한, 더보이즈 영훈, 김우빈, 가비', 'Bazaar 편집부 (지은이)', '허스트중앙(Hearst-Joongang)', '', 2913, 347136551, 'https://image.aladin.co.kr/product/34713/65/cover200/k242933115_2.jpg', '2024-09-13', false, 'http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=347136551&amp;partner=openAPI&amp;start=api', false, false, 0, 0);
 INSERT INTO book_tb (isbn13, title, author, publisher, description, category_id, item_id, cover, pub_date, adult, link, lend_status, reservation_status, lend_count, reservation_count)VALUES ('9771739526000', '날마다 솟는 샘물 2024.10', '사랑의교회 편집부 (지은이)', '국제제자훈련원(DMI.디엠출판유통)', '', 2913, 346166961, 'https://image.aladin.co.kr/product/34616/69/cover200/k352933980_1.jpg', '2024-09-03', false, 'http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=346166961&amp;partner=openAPI&amp;start=api', false, false, 0, 0);
 INSERT INTO book_tb (isbn13, title, author, publisher, description, category_id, item_id, cover, pub_date, adult, link, lend_status, reservation_status, lend_count, reservation_count)VALUES ('9771599176001', '고교 독서평설 2024.10', '지학사 편집부 (지은이)', '지학사(잡지)', '', 2913, 347737364, 'https://image.aladin.co.kr/product/34773/73/cover200/k072933024_1.jpg', '2024-10-01', false, 'http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=347737364&amp;partner=openAPI&amp;start=api', false, false, 0, 0);
+
+
