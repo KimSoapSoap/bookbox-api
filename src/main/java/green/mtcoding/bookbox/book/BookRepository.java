@@ -25,8 +25,8 @@ public interface BookRepository extends JpaRepository<Book, String> {
     List<Book> mFindByCategoryId(@Param("id") String id);
 
     //상세보기
-//    @Query("select b from Book b join fetch b.comments c where b.isbn13=:isbn13")
-//    Optional<Book> mFindByIdWithComment(@Param("id") String isbn13);
+    @Query("SELECT b FROM Book b left JOIN fetch b.comments ct left JOIN fetch ct.user u WHERE b.isbn13 = :isbn13")
+    Optional<Book> mFindByIdWithComment(@Param("isbn13") String isbn13);
 
 
     // 대여 상태인지 확인

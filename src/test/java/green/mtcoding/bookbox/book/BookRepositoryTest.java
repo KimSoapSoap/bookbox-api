@@ -46,9 +46,11 @@ public class BookRepositoryTest {
     //책 상세보기
     @Test
     public void mFindByIdWithComment_test(){
-        String isbn13 = "9791190669313";
+        String isbn13 = "9788937462788";
         Book detailBook = bookRepository.mFindByIdWithComment(isbn13).get();
+        //2번 들락날락은 별로라고 했는데 그럼 join할까?
         System.out.println(detailBook.getComments().get(0).getContent());
+        System.out.println(detailBook.getComments().get(0).getUser().getNick());
     }
 
 

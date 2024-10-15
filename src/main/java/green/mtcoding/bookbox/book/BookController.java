@@ -2,6 +2,7 @@ package green.mtcoding.bookbox.book;
 
 
 import green.mtcoding.bookbox.core.util.Resp;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,9 +45,9 @@ public class BookController {
     }
 
     //책 상세보기
-//    @GetMapping("/api/books/detail")
-//    public ResponseEntity<?> detail(@RequestParam(name = "isbn13") String isbn13){
-//        BookResponse.BookDetailDTO bookDetail = bookService.책상세보기(isbn13);
-//        return ResponseEntity.ok(Resp.ok(bookDetail));
-//    }
+    @GetMapping("/api/books/detail")
+    public ResponseEntity<?> detail(@RequestParam(name = "isbn13") String isbn13, HttpServletRequest request){
+        BookResponse.DetailDTO bookDetail = bookService.책상세보기(isbn13,request);
+        return ResponseEntity.ok(Resp.ok(bookDetail));
+    }
 }
