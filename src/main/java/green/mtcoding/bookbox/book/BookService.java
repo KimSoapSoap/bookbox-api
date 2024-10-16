@@ -75,10 +75,15 @@ public class BookService {
 
 
     public BookResponse.DetailDTO 책상세보기(String isbn13, HttpServletRequest request){
-        String token = JwtUtil.extractToken(request);
-        Long userId = JwtUtil.extractUserIdFromToken(token);
         Book bookPS = bookRepository.mFindByIdWithComment(isbn13)
                 .orElseThrow(()-> new ExceptionApi404("해당 책이 없습니다"));
+
+        String token = JwtUtil.extractToken(request);
+
+        if(token == null){
+            return new BookResponse.DetailDTO(bookPS,null);
+        }
+        Long userId = JwtUtil.extractUserIdFromToken(token);
         return new BookResponse.DetailDTO(bookPS,userId);
     }
 
