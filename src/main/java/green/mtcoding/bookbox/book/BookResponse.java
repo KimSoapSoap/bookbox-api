@@ -127,7 +127,7 @@ public class BookResponse {
         private int reservationCount;
         //카테고리 아이디1
         private String categoryId;
-        //댓글
+        //리뷰
         List<CommentDTO> comments = new ArrayList<>();
         //찜하기(좋아요) 아직 구현안됨
 
@@ -152,7 +152,6 @@ public class BookResponse {
                 if(comment.getUser().getId() == currentUserId) {
                     isOwner = true;
                 }
-                //권한 체크 해야함 이거를 어디서 해야하는가?
             }
         }
         public DetailDTO(Book book, Long currentUserId) {

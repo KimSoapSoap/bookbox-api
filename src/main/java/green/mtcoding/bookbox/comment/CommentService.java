@@ -43,9 +43,9 @@ public class CommentService {
         //게시글 존재 유무 확인
         Book bookPS = bookRepository.findById(saveDTO.getIsbn13())
                 .orElseThrow(()-> new ExceptionApi404("책을 찾을 수 없습니다."));
+
         //토큰으로 유저 정보 찾기
         String token = JwtUtil.extractToken(request);
-        System.out.println("댓글 쓸 때 토큰 : " + token);
         User user = JwtUtil.verify(token);
 
         //2. 비영속 댓글 객체 만들기

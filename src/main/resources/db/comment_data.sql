@@ -1,4 +1,4 @@
---TODO : 댓글 추가
+--TODO : 리뷰 추가
 insert into comment_tb(content, created_at, book_isbn13, user_id) values('여우에 대한 감정이 들어간 것 같아 보류', '2024-10-14 08:00:00','9791190669313', 1);
 insert into comment_tb(content, created_at, book_isbn13, user_id) values('나야 홍길동','2024-10-14 08:00:00','9788996851516', 2);
 insert into comment_tb(content, created_at, book_isbn13, user_id) values('물.. 물코키 씨푸드','2024-10-15 08:00:00','9788937462788', 3);
