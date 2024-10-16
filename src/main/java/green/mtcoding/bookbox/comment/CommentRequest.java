@@ -11,10 +11,11 @@ public class CommentRequest {
         private String isbn13;
         private String content;
 
-        public Comment toEntity(Book book) {
+        public Comment toEntity(Book book, User user) {
             return Comment.builder()
                     .content(content)
                     .book(book)
+                    .user(user)
                     .build();
         }
     }

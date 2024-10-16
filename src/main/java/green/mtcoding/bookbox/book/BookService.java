@@ -6,7 +6,6 @@ import green.mtcoding.bookbox.core.exception.api.ExceptionApi400;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
 import green.mtcoding.bookbox.core.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -67,12 +66,16 @@ public class BookService {
     }
 
     public BookResponse.DetailDTO 책상세보기(String isbn13, HttpServletRequest request){
+        System.out.println("상세보기 서비스 1");
         String token = JwtUtil.extractToken(request);
+        System.out.println("상세보기 서비스 2");
         System.out.println("삭제할때 토큰 : " + token);
         Long userId = JwtUtil.extractUserIdFromToken(token);
+        System.out.println("상세보기 서비스 3");
         System.out.println("토큰의 유저 아이디 : " + userId);
         Book bookPS = bookRepository.mFindByIdWithComment(isbn13)
                 .orElseThrow(()-> new ExceptionApi404("해당 책이 없습니다"));
+        System.out.println("상세보기 서비스 4");
         return new BookResponse.DetailDTO(bookPS,userId);
     }
 
