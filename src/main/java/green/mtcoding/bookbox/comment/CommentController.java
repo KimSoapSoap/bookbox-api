@@ -13,8 +13,8 @@ public class CommentController {
             commentService;
 
     @PostMapping("/api/books/review")
-    public ResponseEntity<?> save(@RequestBody CommentRequest.SaveDTO saveDTO){
-        CommentResponse.DTO commentDTO = commentService.댓글쓰기(saveDTO);
+    public ResponseEntity<?> save(@RequestBody CommentRequest.SaveDTO saveDTO,HttpServletRequest request) {
+        CommentResponse.DTO commentDTO = commentService.댓글쓰기(saveDTO,request);
         return ResponseEntity.ok(Resp.ok(commentDTO));
     }
     @DeleteMapping("/api/books/review/{id}")
