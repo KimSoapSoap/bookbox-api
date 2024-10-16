@@ -32,11 +32,11 @@ public class LendService {
     @Transactional
     public LendResponse.LendDTO 대여하기(Long userId, LendRequest.SaveDTO request) {
 
-        // user가 3권 이상 대여했는지 확인
+        // user가 10권 이상 대여했는지 확인
         Long lendCount = lendRepository.mFindCountByUserId(userId);
 
-        if(lendCount >= 3) {
-            throw new ExceptionApi400("3권을 초과하여 대여할 수 없습니다.");
+        if(lendCount >= 10) {
+            throw new ExceptionApi400("10권을 초과하여 대여할 수 없습니다.");
         }
 
         // 1. 해당 isbn의 도서가 있는지 체크 ( 유저는 token에서 꺼낸거니까 체크안함 )
