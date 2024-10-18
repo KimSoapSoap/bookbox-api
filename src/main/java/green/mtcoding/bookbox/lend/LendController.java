@@ -2,7 +2,6 @@ package green.mtcoding.bookbox.lend;
 
 import green.mtcoding.bookbox.core.util.JwtUtil;
 import green.mtcoding.bookbox.core.util.Resp;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +36,15 @@ public class LendController {
 
         return ResponseEntity.ok(Resp.ok(result, "성공적으로 반납되었습니다."));
     }
+
+
+    // TODO: 테스트용 API - 신민재
+    @PutMapping("/api/lends/auto-return")
+    public ResponseEntity<?> triggerAutoReturn() {
+        lendService.자동반납(); // LendService의 자동반납 메소드 호출
+        return ResponseEntity.ok("대여기간이 만료되어 자동으로 반납처리 되었습니다.");
+    }
+
 
     //TODO: 테스트용 컨트롤러 (지우기)
     // 자동반납 테스트

@@ -1,7 +1,11 @@
 package green.mtcoding.bookbox.user;
 
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi400;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi401;
+
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi500;
 import green.mtcoding.bookbox.core.util.JwtUtil;
@@ -15,7 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+
+import green.mtcoding.bookbox.core.util.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -40,6 +52,25 @@ public class UserService {
 
         return new UserResponse.JoinDTO(userPS);
     }
+
+    // 자동 로그인. 토큰을 돌려줄 필요가 없다.
+    public UserResponse.AutoLoginDTO 자동로그인(String accessToken) {
+        Optional.ofNullable(accessToken).orElseThrow(() -> new ExceptionApi401("토큰을 찾을 수 없습니다."));
+        try {
+            User user = JwtUtil.verify(accessToken);
+            //존재하는 회원인지 확인. id를 꺼내서 존재하는 회원인지 확인
+            User userPS = userRepository.findById(user.getId()).orElseThrow(
+                    ()-> new ExceptionApi401("유저네임을 찾을 수 없습니다")
+            );
+            return new UserResponse.AutoLoginDTO(userPS);
+        }catch (SignatureVerificationException | JWTDecodeException e1) {
+            throw new ExceptionApi401("유효한 토큰이 아닙니다.");
+        } catch (TokenExpiredException e2){
+            throw new ExceptionApi401(("토큰이 만료되었습니다."));
+        }
+    }
+
+
 
 
 
@@ -92,9 +123,17 @@ public class UserService {
     }
 
 
+
     public boolean 유저네임중복체크 (String username) {
         return userRepository.existsByUsername(username);
+    }
 
+    // 회원 목록 조회(유저의 대여 목록과 예약 목록 함께 return) TODO: 신민재
+    public List<UserResponse.UserDTO> getUserList() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(UserResponse.UserDTO::new)
+                .collect(Collectors.toList());
     }
 
     public boolean 닉네임중복체크 (String nick) {

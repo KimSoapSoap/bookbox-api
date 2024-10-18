@@ -1,12 +1,15 @@
 package green.mtcoding.bookbox.book;
 
 import green.mtcoding.bookbox.category.Category;
+import green.mtcoding.bookbox.comment.Comment;
+import green.mtcoding.bookbox.comment.CommentRepository;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi404;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi500;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +18,11 @@ public class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Test
-    public void mFindAll_test(){
+    public void mFindAll_test() {
         String title = "제";
         String author = "";
         String publisher = "";
@@ -43,11 +48,35 @@ public class BookRepositoryTest {
 //        System.out.println(books.get(0).getCategory());
 //    }
 
+    //책 상세보기
+    @Test
+    public void mFindByIdWithComment_test(){
+        String isbn13 = "9788937462788";
+        Book detailBook = bookRepository.mFindByIdWithComment(isbn13).get();
+        //2번 들락날락은 별로라고 했는데 그럼 join할까?
+        System.out.println(detailBook.getComments().get(0).getContent());
+        System.out.println(detailBook.getComments().get(0).getUser().getNick());
+    }
+
+    @Test
+    public void mFindByIdWithComments_test(){
+        String isbn13 = "9791190669313";
+        System.out.println("1");
+        List<Comment> comment = commentRepository.mFindCommentsByBookIsbn13(isbn13);
+        System.out.println("2");
+        List<BookResponse.CommentOnlyDTO> dtos = new ArrayList<>();
+        for (Comment comment1 : comment) {
+            BookResponse.CommentOnlyDTO dto = new BookResponse.CommentOnlyDTO(comment1,1L);
+            dtos.add(dto);
+            System.out.println(dto.getId());
+            System.out.println(dto.getNick());
+        }
+    }
 
 
     // 대여 상태인지 확인
     @Test
-public void mCheckLendStatus_test(){
+    public void mCheckLendStatus_test() {
 
         //given
         String isbn13 = "9791187011590";
@@ -57,33 +86,34 @@ public void mCheckLendStatus_test(){
 
         //eye
         System.out.println(b);
-        if(b.booleanValue()){
+        if (b.booleanValue()) {
             System.out.println("누군가 대여중임");
-        }else{
+        } else {
             System.out.println("대여가능상태");
         }
     }
+
     // 대여 하기
     @Test
-    public void mUpdateLendStatusAndCount_test(){
+    public void mUpdateLendStatusAndCount_test() {
         //given
         String isbn13 = "9791187011590";
 
         //when
         Integer i = bookRepository.mUpdateLendStatusAndCount(isbn13);
 
-        if(i==1){
+        if (i == 1) {
             Optional<Book> bookPS = bookRepository.findById(isbn13);
             bookPS.ifPresent(System.out::println);
             System.out.println(bookPS.get().getLendCount());
             System.out.println(bookPS.get().isLendStatus());
-        }else{
+        } else {
             throw new ExceptionApi500("업데이트 안됨");
         }
     }
 
     @Test
-    public void mUpdateLendStatusAndCountReturn_test(){
+    public void mUpdateLendStatusAndCountReturn_test() {
         //given
         String isbn13 = "9791187011590";
 
@@ -91,18 +121,18 @@ public void mCheckLendStatus_test(){
         Integer i = bookRepository.mUpdateLendStatusAndCountReturn(isbn13);
 
         //eye
-        if(i==1){
+        if (i == 1) {
             Optional<Book> bookPS = bookRepository.findById(isbn13);
             bookPS.ifPresent(System.out::println);
             System.out.println(bookPS.get().getLendCount());
             System.out.println(bookPS.get().isLendStatus());
-        }else{
+        } else {
             throw new ExceptionApi500("반납 처리중 문제발생");
         }
     }
 
     @Test
-    public void mFindBookWithActiveReservation_test(){
+    public void mFindBookWithActiveReservation_test() {
         //given
         String isbn13 = "9788937462849";
 
@@ -110,7 +140,7 @@ public void mCheckLendStatus_test(){
         List<Book> bookList = bookRepository.mFindBookWithActiveReservation(isbn13);
 
         //eye
-        if(bookList.isEmpty()){
+        if (bookList.isEmpty()) {
             System.out.println("해당 도서는 예약 상태가 아님");
         } else {
             System.out.println("해당 도서는 예약 상태입니다.");

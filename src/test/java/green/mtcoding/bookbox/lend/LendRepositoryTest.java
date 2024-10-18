@@ -127,10 +127,13 @@ public class LendRepositoryTest {
         //when
         List<Lend> lends = lendRepository.mFindAllByReturnDateAndReturnStatusFalse();
 
+        System.out.println("Lend 리스트 크기: " + lends.size());
+
         //eye
         for (Lend lend : lends) {
-            System.out.println(lend.isReturnStatus());
-            System.out.println(lend.getBook().getTitle());
+            System.out.println("returnStatus : " + lend.isReturnStatus());
+            System.out.println("returnDate : " + lend.getReturnDate());
+            System.out.println("대여한 책 : " + lend.getBook().getTitle());
         }
 
     }
@@ -201,5 +204,16 @@ public class LendRepositoryTest {
         assertEquals(Timestamp.valueOf("2024-10-14 22:10:17.921182"), latestLend.get().getReturnDate());
         assertEquals(userId, latestLend.get().getUser().getId());
         assertEquals(bookId, latestLend.get().getBook().getIsbn13());
+    }
+
+    @Test
+    public void mFindCountByUserId_test(){
+        Long userId = 2L;
+
+        Long l = lendRepository.mFindCountByUserId(userId);
+
+        System.out.println(l);
+
+
     }
 }

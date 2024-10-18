@@ -6,6 +6,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import green.mtcoding.bookbox.admin.Admin;
 import green.mtcoding.bookbox.core.exception.api.ExceptionApi400;
 import green.mtcoding.bookbox.user.User;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 import java.util.Date;
@@ -14,6 +15,9 @@ public class JwtUtil {
 
     private static final String SECRET_KEY = "bookbox";  // 비밀 키 설정
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
+    private static final long TEST_TIME = 1000 * 60 * 555;  // 5분
+
+
 
 
     // =================== User ============================
@@ -21,7 +25,7 @@ public class JwtUtil {
     public static String createUserToken(User user) {
         String accessToken = JWT.create()
                 .withSubject("auth") // 이름
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) //만료시간 7일
+                .withExpiresAt(new Date(System.currentTimeMillis() + TEST_TIME)) //만료시간 7일 -> 테스트겸 5분으로 해둠
                 .withClaim("id", user.getId()) // payload에 추가. 개인정보 넣지 않고 검증을 위한 id정도만(인조키 id번호)
                 .withClaim("role", "USER") // 역할: 사용자
                 .sign(Algorithm.HMAC512(SECRET_KEY)); //우리가 암호화 하고 우리가 복호화 해서 확인할 것이므로 대칭키 사용
@@ -48,6 +52,15 @@ public class JwtUtil {
                 .build();
     }
 
+    //TODO : 토큰 가지고 오기
+    public static String extractToken(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7); // 'Bearer ' 이후의 토큰 부분만 추출
+        }
+        return null;
+    }
 
 
 

@@ -6,7 +6,6 @@ import lombok.Data;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class LendResponse {
 
@@ -39,7 +38,8 @@ public class LendResponse {
                 String isbn13 = (String) objects[0];  // 첫 번째 값은 title
                 String title = (String) objects[1];  // 두 번째 값은 image
                 String cover = (String) objects[2];
-                this.books.add(new Book(isbn13, title, cover));
+                Timestamp returnDate = (Timestamp) objects[3];
+                this.books.add(new Book(isbn13, title, cover, returnDate));
             }
         }
 
@@ -48,11 +48,14 @@ public class LendResponse {
             private String isbn13;
             private String title;
             private String cover;
+            private Timestamp returnDate;
 
-            public Book(String isbn13, String title, String cover) {
+
+            public Book(String isbn13, String title, String cover, Timestamp returnDate) {
                 this.isbn13 = isbn13;
                 this.title = title;
                 this.cover = cover;
+                this.returnDate = returnDate;
 
             }
         }
