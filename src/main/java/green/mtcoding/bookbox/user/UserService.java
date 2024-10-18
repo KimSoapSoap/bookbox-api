@@ -14,18 +14,13 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import green.mtcoding.bookbox.core.util.JwtUtil;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -112,34 +107,16 @@ public class UserService {
         return new UserResponse.UpdateInfoDTO(user);
     }
 
-    public void 회원정보조회(Long userId){
-
-        // 유저 id로 해당 유저가 있는지 조회
-        User user = userRepository.findById(userId).orElseThrow(() -> new ExceptionApi404("회원 정보가 없습니다."));
-
-
-        // 무슨 정보를 넘기지? 이야기 필요
-
-    }
-
-
 
     public boolean 유저네임중복체크 (String username) {
         return userRepository.existsByUsername(username);
-    }
-
-    // 회원 목록 조회(유저의 대여 목록과 예약 목록 함께 return) TODO: 신민재
-    public List<UserResponse.UserDTO> getUserList() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(UserResponse.UserDTO::new)
-                .collect(Collectors.toList());
     }
 
     public boolean 닉네임중복체크 (String nick) {
         return userRepository.existsByNick(nick);
 
     }
+
 
     @Transactional
     public UserResponse.UpdateNickDTO 닉네임변경(Long userId, UserRequest.UpdateNickDTO updateNickDTO){
@@ -179,6 +156,15 @@ public class UserService {
 
 
     }
+    // 회원 목록 조회(유저의 대여 목록과 예약 목록 함께 return) TODO: 신민재
+    public List<UserResponse.UserDTO> getUserList() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(UserResponse.UserDTO::new)
+                .collect(Collectors.toList());
+
+    }
+
 
 
 /*    public User 회원탈퇴(Long id) {

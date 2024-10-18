@@ -57,6 +57,7 @@ public class UserRequest {
 
     }
 
+    // 수정할 넥네임
     @Data
     public static class UpdateNickDTO {
         @NotEmpty
