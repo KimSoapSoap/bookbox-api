@@ -1,8 +1,12 @@
-## bookbox-api
+<div align= "center">
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=gradient&text=BookBox%20Project&descAlign=60&fontAlign=50&descAlignY=0&animation=fadeIn&fontSize=50" />
+    </div>
 
-![Screenshot_6](https://github.com/user-attachments/assets/f7a30bfa-2f09-47df-90d1-62e462687afb)
+<div align="center">
+<img src = "https://github.com/user-attachments/assets/f7a30bfa-2f09-47df-90d1-62e462687afb" width="450px" height="450px">
+</div>
 
-## bookbox backend v1.0.0
+## BookBox backend v1.0.0
 
 > (생성형AI활용)Springboot 기반 웹개발과 Flutter 기반 앱개발 실무양성 심화과정 5기
 > 
@@ -10,18 +14,26 @@
 > 
 > 개발기간: 2024.10.04 ~ 2024.10.17
 
-## 프론트 주소
+<br>
 
-> 프론트 깃허브 주소 : https://github.com/KimSoapSoap/bookbox
+## Front-End 주소 (Flutter)
+
+> Front-End GitHub 주소 : https://github.com/KimSoapSoap/bookbox
 > 
 > (배포 후 배포 서버 추가하기)
 
-## Backend 개발팀 소개
+<br>
 
-| 김성훈 | 윤주헌 | 신민재 | 김호정 |
-|--------|--------|--------|--------|
-| 이미지 | 이미지 | 이미지 | 이미지 |
-|@프로필링크|@프로필링크|@프로필링크|@프로필링크|
+## Back-End 개발팀 소개
+| [김성훈](https://github.com/KimSoapSoap) | [윤혜지](https://github.com/hyeji111544) | 
+|--------|--------|
+| <img src = "https://github.com/user-attachments/assets/b77191d1-ca55-486e-88ad-7c999791e193" width="100px" height="100px"> | <img src = "https://github.com/user-attachments/assets/7cdac4a2-0b04-428b-8b1f-91925c655978" width="100px" height="100px"> |
+
+| [윤주헌](https://github.com/chunsicks) | [신민재](https://github.com/shnmj) | [김호정](https://github.com/HJK0000) |
+|--------|--------|--------|
+| <img src = "https://github.com/user-attachments/assets/0366a170-63e4-4a74-8520-57269851973e" width="100px" height="100px"> | <img src = "https://github.com/user-attachments/assets/af6b3ead-d649-4f28-99c8-4cdd2fde155d" width="100px" height="100px"> | <img src = "https://github.com/user-attachments/assets/b935b1a8-d8e0-48cc-b502-a3016e5c8463" width="100px" height="100px"> |
+
+<br>
 
 ## 프로젝트 소개
 
@@ -40,25 +52,30 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 ```
 ## 기술 스택
 
-#### Development
+### Development
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
 <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white">
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
 
-#### Communication
+
+### Communication
 <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 
 
 <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white">
 
+<br>
+
 ## API 주소 목록
 
 🎁 API 문서 : https://getinthere.notion.site/API-1188a08b6c0d809db6a7ebcf421f63fc?pvs=4
 
-## 주요 기능
+<br>
+
+## 주요 기능 (GIF 추가 예정)
 
 ⭐ **회원**
 * 회원 가입, 로그인, JWT 토큰을 통한 인증 처리
@@ -68,6 +85,8 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 
 ⭐ **즐겨찾기**
 * 도서 즐겨찾기 추가, 조회, 삭제 처리
+
+<br>
 
 ## 프로젝트 디렉토리 구조
 
@@ -183,11 +202,16 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 
 ```
 
+<br>
 
 ## 기타 추가 사항들
 
+
 💻 팀블로그 : https://getinthere.notion.site/3e91f473e1184ad7be242f3f6edc7fe5?pvs=4
+
+<br>
 
 ## 기여 방법
 Pull request는 언제든지 환영합니다. 이슈를 생성해 버그를 신고하거나 새로운 기능을 제안해 주세요! 😊
 
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:E34C26,10:DA5B0B,30:C6538C,75:3572A5,100:A371F7&height=40&section=footer&text=&fontSize=0" width="100%"/>
