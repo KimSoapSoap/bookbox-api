@@ -1,9 +1,9 @@
 <div align= "center">
-    <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=gradient&text=BookBox%20Project&descAlign=60&fontAlign=50&descAlignY=0&animation=fadeIn&fontSize=50" />
+    <img src="https://capsule-render.vercel.app/api?type=waving&height=150&color=gradient&text=BookBox%20Project&descAlign=60&fontAlign=50&descAlignY=0&animation=fadeIn&fontSize=50" />
     </div>
 
 <div align="center">
-<img src = "https://github.com/user-attachments/assets/f7a30bfa-2f09-47df-90d1-62e462687afb" width="450px" height="450px">
+<img src = "https://github.com/user-attachments/assets/35f066d0-35ef-4735-a713-a025da40b127">
 </div>
 
 ## BookBox backend v1.0.0
@@ -65,7 +65,7 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 
 
-<img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white">
+<!-- <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white"> -->
 
 <br>
 
@@ -75,16 +75,39 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 
 <br>
 
-## 주요 기능 (GIF 추가 예정)
+## 주요 기능
 
 ⭐ **회원**
 * 회원 가입, 로그인, JWT 토큰을 통한 인증 처리
+<br>
+<img src = "https://github.com/user-attachments/assets/3bbac067-cc40-4fec-87dc-a011a5baaa42" width="200px" height="400px">
+<hr>
 
 ⭐ **도서**
 * 도서 대여/반납/예약, 자동 반납 처리
+<br><br>
+<img src = "https://github.com/user-attachments/assets/25b8b9a6-3ed9-4be7-98a5-1ee25096a5ff" width="200px" height="400px">
+<hr>
 
-⭐ **즐겨찾기**
-* 도서 즐겨찾기 추가, 조회, 삭제 처리
+⭐ **도서목록**
+* 카테고리/주제별 도서 목록 
+<br><br>
+<img src = "https://github.com/user-attachments/assets/c5db034f-a6f9-4deb-ae84-d371b63c2e72" width="200px" height="400px">
+<hr>
+
+⭐ **즐겨찾기/리뷰**
+* 도서 즐겨찾기 추가, 조회, 삭제 처리 / 리뷰 작성, 삭제
+<br><br>
+<img src = "https://github.com/user-attachments/assets/c73629ee-6ed1-4696-950a-76e0d8327971" width="200px" height="400px">
+<hr>
+
+⭐ **다크모드**
+* 도서 즐겨찾기 추가, 조회, 삭제 처리 / 리뷰 작성, 삭제
+<br><br>
+<img src = "https://github.com/user-attachments/assets/bfa742d7-494e-411e-82e0-ec80d66d203f" width="200px" height="400px">
+
+
+<hr>
 
 <br>
 
