@@ -3,7 +3,7 @@
     </div>
 
 <div align="center">
-<img src = "https://github.com/user-attachments/assets/35f066d0-35ef-4735-a713-a025da40b127">
+<img src = "https://github.com/user-attachments/assets/4f13baf9-0642-414e-8c5e-57e745404fa3">
 </div>
 
 ## BookBox backend v1.0.0
@@ -102,7 +102,7 @@ git clone https://github.com/KimSoapSoap/bookbox-api.git
 <hr>
 
 ⭐ **다크모드**
-* 도서 즐겨찾기 추가, 조회, 삭제 처리 / 리뷰 작성, 삭제
+* 다크모드 적용
 <br><br>
 <img src = "https://github.com/user-attachments/assets/bfa742d7-494e-411e-82e0-ec80d66d203f" width="200px" height="400px">
 
