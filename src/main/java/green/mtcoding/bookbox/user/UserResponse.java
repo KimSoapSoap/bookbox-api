@@ -11,7 +11,9 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class UserResponse {
+  
     // 회원가입
     @Data
     public static class JoinDTO {
@@ -58,6 +60,38 @@ public class UserResponse {
     }
 
 
+    @Data
+    public static class UpdateInfoDTO {
+        private Long id;
+        private String username;
+        private String nick;
+        private String password;
+        private String email;
+        private String phone;
+        private String profile;
+        private Timestamp modifiedAt;
+        private Timestamp createdAt;
+
+        public UpdateInfoDTO(User userPS) {
+            this.id = userPS.getId();
+            this.username = userPS.getUsername();
+            this.nick = userPS.getNick();
+            this.password = userPS.getPassword();
+            this.email = userPS.getEmail();
+            this.phone = userPS.getPhone();
+            this.profile = userPS.getProfile();
+            this.modifiedAt = userPS.getModifiedAt();
+            this.createdAt = userPS.getCreatedAt();
+        }
+    }
+
+    @Data
+    public static class UsernameDupCheckDTO {
+        private String username;
+
+        public UsernameDupCheckDTO(String username) {
+            this.username = username;
+
     // TODO: 유저의 기본 정보와 필요 데이터 응답을 위해 생성 - 신민재
 
     // 유저 기본 정보들
@@ -102,10 +136,17 @@ public class UserResponse {
             this.reservations = user.getReservations().stream()
                     .map(reservation -> new ReservationDTO(reservation.getBook().getTitle(), reservation.getReservationDate()))
                     .collect(Collectors.toList());
+
         }
     }
 
     @Data
+    public static class NickDupCheckDTO {
+        private String nick;
+
+        public NickDupCheckDTO(String nick) {
+            this.nick = nick;
+
     public static class LendDTO {
         private String bookTitle;
         private Timestamp lendDate;
@@ -117,6 +158,14 @@ public class UserResponse {
     }
 
     @Data
+    public static class UpdateNickDTO {
+        private String nick;
+        private Long userId;
+
+        public UpdateNickDTO(User userPS) {
+            this.userId = userPS.getId();
+            this.nick = userPS.getNick();
+
     public static class ReservationDTO {
         private String bookTitle;
         private Timestamp reservationDate;
@@ -124,6 +173,7 @@ public class UserResponse {
         public ReservationDTO(String bookTitle, Timestamp reservationDate) {
             this.bookTitle = bookTitle;
             this.reservationDate = reservationDate;
+
         }
     }
 
@@ -144,4 +194,6 @@ public class UserResponse {
             this.phone = phone;
         }
     }
+
+
 }
